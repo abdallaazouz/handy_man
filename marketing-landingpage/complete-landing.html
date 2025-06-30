@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techniker Task Manager - Professionelle Telegram Bot Lösung</title>
+    <meta name="description" content="Revolutionäre Telegram Bot Lösung für Techniker-Management, Aufgabenverwaltung und Rechnungsstellung. Mehrsprachig (DE/EN/AR) mit Echtzeit-Benachrichtigungen.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Techniker Task Manager - Professionelle Telegram Bot Lösung">
+    <meta property="og:description" content="Komplette Management-Lösung für Techniker mit Telegram Bot Integration">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://techniker-task-manager.de">
+    
+    <!-- Styles -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --border-color: #e2e8f0;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --telegram-color: #0088cc;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-white);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: var(--bg-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .language-switch, .login-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .language-switch:hover, .login-btn:hover {
+            background: var(--secondary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: var(--bg-white);
+            color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+        
+        /* Sections */
+        .section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        
+        .feature-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .feature-card ul {
+            margin-top: 0.5rem;
+            color: var(--text-light);
+            list-style: none;
+        }
+        
+        .feature-card ul li {
+            padding: 0.2rem 0;
+            position: relative;
+            padding-left: 1rem;
+        }
+        
+        .feature-card ul li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        /* Screenshots Gallery */
+        .screenshots {
+            background: var(--bg-light);
+        }
+        
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .screenshot-item {
+            background: var(--bg-white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .screenshot-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .screenshot-info {
+            padding: 1.5rem;
+        }
+        
+        .screenshot-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+        
+        .screenshot-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        /* Technical Specs */
+        .tech-specs {
+            background: var(--bg-white);
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .spec-item {
+            padding: 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            transition: border-color 0.3s;
+        }
+        
+        .spec-item:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .spec-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .spec-list {
+            list-style: none;
+        }
+        
+        .spec-list li {
+            padding: 0.3rem 0;
+            color: var(--text-light);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .spec-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            background: var(--bg-light);
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .pricing-card {
+            background: var(--bg-white);
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .pricing-card.popular {
+            border: 3px solid var(--primary-color);
+            transform: scale(1.05);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 1rem 0;
+        }
+        
+        .price-period {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+        
+        .features-list {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .features-list li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .features-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .btn-telegram {
+            background: var(--telegram-color);
+            color: white;
+            width: 100%;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            padding: 1rem;
+        }
+        
+        .btn-telegram:hover {
+            background: #0077bb;
+            transform: translateY(-2px);
+        }
+        
+        /* Login Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .modal-content {
+            background-color: var(--bg-white);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+        }
+        
+        .close:hover {
+            color: #000;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        /* Customer Portal */
+        .customer-portal {
+            background: var(--bg-light);
+            min-height: 100vh;
+            padding-top: 100px;
+            display: none;
+        }
+        
+        .portal-header {
+            background: var(--bg-white);
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .portal-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .welcome-text {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+        }
+        
+        .logout-btn {
+            background: var(--warning-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background: #d97706;
+        }
+        
+        .portal-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .portal-card {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .download-btn {
+            background: var(--success-color);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .download-btn:hover {
+            background: #059669;
+        }
+        
+        .support-btn {
+            background: var(--telegram-color);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+        
+        .support-btn:hover {
+            background: #0077bb;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 1rem;
+            text-align: center;
+            color: #94a3b8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+            
+            .pricing-card.popular {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">🔧 Techniker Task Manager</div>
+                <ul class="nav-links">
+                    <li><a href="#overview">Überblick</a></li>
+                    <li><a href="#features">Funktionen</a></li>
+                    <li><a href="#screenshots">Screenshots</a></li>
+                    <li><a href="#technical">Technisch</a></li>
+                    <li><a href="#pricing">Preise</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <button class="language-switch" onclick="toggleLanguage()">🌐 DE</button>
+                    <a href="#" class="login-btn" onclick="openLoginModal()">👤 Anmelden</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Landing Page -->
+    <div id="landingPage">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Revolutionäre Telegram Bot Lösung</h1>
+                <p>Professionelles Management-System für Techniker mit automatisierter Aufgabenverwaltung, Echtzeit-Kommunikation und umfassender Rechnungsstellung</p>
+                <div class="cta-buttons">
+                    <a href="#demo" class="btn btn-primary">🚀 Live Demo starten</a>
+                    <a href="#pricing" class="btn btn-outline">💰 Preise ansehen</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Overview -->
+        <section id="overview" class="section">
+            <div class="container">
+                <h2 class="section-title">Komplette Management-Lösung</h2>
+                <p class="section-subtitle">Ein vollständig integriertes System zur Verwaltung von Technikern, Aufgaben und Rechnungen mit modernster Telegram Bot Technologie</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>Telegram Bot Integration</h3>
+                        <p>Vollautomatisierte Kommunikation mit Technikern über Telegram. Aufgaben werden direkt an verfügbare Techniker gesendet und Statusupdates in Echtzeit empfangen.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Dashboard & Analytics</h3>
+                        <p>Übersichtliches Admin-Dashboard mit Echtzeit-Statistiken, Aufgabenübersicht, Techniker-Status und umfassenden Berichten für optimale Geschäftsführung.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🌍</div>
+                        <h3>Mehrsprachige Oberfläche</h3>
+                        <p>Vollständige Unterstützung für Deutsch, Englisch und Arabisch mit RTL-Layout-Support. Sprache wird automatisch zwischen System und Bot synchronisiert.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📄</div>
+                        <h3>Automatische Rechnungsstellung</h3>
+                        <p>Professionelle PDF-Rechnungserstellung mit Export-Funktionen (PDF, Excel, CSV). Vollständig anpassbare Vorlagen und automatisierte Workflows.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🔔</div>
+                        <h3>Echtzeit-Benachrichtigungen</h3>
+                        <p>Intelligentes Benachrichtigungssystem mit Audio-Alerts, WebSocket-Verbindungen und personalisierten Meldungen für alle wichtigen Ereignisse.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🗄️</div>
+                        <h3>Datenbank-Management</h3>
+                        <p>Robuste PostgreSQL-Datenbank mit automatischen Backups, Restore-Funktionen und umfassenden Verwaltungstools für maximale Datensicherheit.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features & Modules -->
+        <section id="features" class="section" style="background: var(--bg-light);">
+            <div class="container">
+                <h2 class="section-title">Detaillierte Funktionen & Module</h2>
+                <p class="section-subtitle">Jedes Modul wurde sorgfältig entwickelt, um maximale Effizienz und Benutzerfreundlichkeit zu gewährleisten</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📋</div>
+                        <h3>Aufgaben-Management</h3>
+                        <p><strong>Kernfunktionen:</strong></p>
+                        <ul>
+                            <li>Erstellung und Zuweisung von Aufgaben</li>
+                            <li>Prioritätsstufen und Fälligkeitsdaten</li>
+                            <li>Automatische Techniker-Zuordnung</li>
+                            <li>Status-Tracking in Echtzeit</li>
+                            <li>Kundendaten-Integration</li>
+                            <li>GPS-Koordinaten und Standortdienste</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">👥</div>
+                        <h3>Techniker-Verwaltung</h3>
+                        <p><strong>Erweiterte Features:</strong></p>
+                        <ul>
+                            <li>Vollständige Techniker-Profile</li>
+                            <li>Telegram-Integration pro Techniker</li>
+                            <li>Verfügbarkeitsstatus</li>
+                            <li>Leistungsstatistiken</li>
+                            <li>Spezialisierung und Fähigkeiten</li>
+                            <li>Arbeitszeit-Tracking</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🧾</div>
+                        <h3>Rechnungs-System</h3>
+                        <p><strong>Professionelle Features:</strong></p>
+                        <ul>
+                            <li>Automatische Rechnungserstellung</li>
+                            <li>Anpassbare PDF-Vorlagen</li>
+                            <li>Mehrwertsteuer-Berechnungen</li>
+                            <li>Export in verschiedenen Formaten</li>
+                            <li>Zahlungsstatus-Tracking</li>
+                            <li>Wiederkehrende Rechnungen</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">⚙️</div>
+                        <h3>Bot-Konfiguration</h3>
+                        <p><strong>Erweiterte Einstellungen:</strong></p>
+                        <ul>
+                            <li>Token-Management und Sicherheit</li>
+                            <li>Nachrichtenvorlagen anpassen</li>
+                            <li>Automatische Antworten</li>
+                            <li>Webhook-Konfiguration</li>
+                            <li>Rate-Limiting und Kontrollen</li>
+                            <li>Debug und Logging</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📈</div>
+                        <h3>Berichte & Analytics</h3>
+                        <p><strong>Umfassende Auswertungen:</strong></p>
+                        <ul>
+                            <li>Leistungsberichte pro Techniker</li>
+                            <li>Aufgaben-Statistiken</li>
+                            <li>Umsatz- und Finanzberichte</li>
+                            <li>Zeitraum-basierte Analysen</li>
+                            <li>Export-Funktionen</li>
+                            <li>Grafische Darstellungen</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Sicherheit & Backup</h3>
+                        <p><strong>Enterprise-Sicherheit:</strong></p>
+                        <ul>
+                            <li>Automatische Datenbank-Backups</li>
+                            <li>Verschlüsselte Datenübertragung</li>
+                            <li>Benutzer-Authentifizierung</li>
+                            <li>Aktivitäts-Logging</li>
+                            <li>Disaster-Recovery</li>
+                            <li>DSGVO-Konformität</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screenshots Gallery -->
+        <section id="screenshots" class="section screenshots">
+            <div class="container">
+                <h2 class="section-title">System-Screenshots</h2>
+                <p class="section-subtitle">Sehen Sie die benutzerfreundliche Oberfläche und professionellen Features in Aktion</p>
+                
+                <div class="screenshot-grid">
+                    <div class="screenshot-item">
+                        <img src="screenshots/dashboard.jpg" alt="Dashboard Screenshot" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSIjRjhGQUZDIi8+CjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzI1NjNFQiIvPgo8dGV4dCB4PSIyMDAiIHk9IjQ1IiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RGFzaGJvYXJkPC90ZXh0Pgo8L3N2Zz4K'">
+                        <div class="screenshot-info">
+                            <h4>Haupt-Dashboard</h4>
+                            <p>Zentrale Übersicht mit Echtzeit-Statistiken, aktiven Aufgaben und Techniker-Status. Intuitive Navigation zu allen System-Bereichen.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="screenshot-item">
+                        <img src="screenshots/task-management.jpg" alt="Task Management Screenshot" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSIjRjhGQUZDIi8+CjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzEwQjk4MSIvPgo8dGV4dCB4PSIyMDAiIHk9IjQ1IiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QXVmZ2FiZW4tVmVyd2FsdHVuZzwvdGV4dD4KPC9zdmc+Cg=='">
+                        <div class="screenshot-info">
+                            <h4>Aufgaben-Verwaltung</h4>
+                            <p>Komplette Aufgabenverwaltung mit Status-Anzeigen, Prioritäten und direkter Techniker-Zuweisung. Echtzeit-Updates vom Telegram Bot.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="screenshot-item">
+                        <img src="screenshots/technician-management.jpg" alt="Technician Management Screenshot" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSIjRjhGQUZDIi8+CjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzM5OEI3MSIvPgo8dGV4dCB4PSIyMDAiIHk9IjQ1IiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VGVjaG5pa2VyLVZlcndhbHR1bmc8L3RleHQ+Cjwvc3ZnPgo='">
+                        <div class="screenshot-info">
+                            <h4>Techniker-Verwaltung</h4>
+                            <p>Umfassende Techniker-Profile mit Verfügbarkeitsstatus, Spezialisierungen und direkter Telegram-Integration.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="screenshot-item">
+                        <img src="screenshots/bot-settings.jpg" alt="Bot Settings Screenshot" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSIjRjhGQUZDIi8+CjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzlDNENGRiIvPgo8dGV4dCB4PSIyMDAiIHk9IjQ1IiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Qm90LUVpbnN0ZWxsdW5nZW48L3RleHQ+Cjwvc3ZnPgo='">
+                        <div class="screenshot-info">
+                            <h4>Bot-Konfiguration</h4>
+                            <p>Erweiterte Telegram Bot Einstellungen mit Token-Management, API-Konfiguration und Sicherheitsoptionen.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="screenshot-item">
+                        <img src="screenshots/invoice-system.jpg" alt="Invoice System Screenshot" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSIjRjhGQUZDIi8+CjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSI0MCIgZmlsbD0iI0Y1OUUwQiIvPgo8dGV4dCB4PSIyMDAiIHk9IjQ1IiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UmVjaG51bmdzLVN5c3RlbTwvdGV4dD4KPC9zdmc+Cg=='">
+                        <div class="screenshot-info">
+                            <h4>Rechnungs-System</h4>
+                            <p>Professionelle Rechnungsverwaltung mit automatischer PDF-Generierung und Exportfunktionen.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="screenshot-item">
+                        <img src="screenshots/reports.jpg" alt="Reports Screenshot" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSIjRjhGQUZDIi8+CjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzZCNzI4MCIvPgo8dGV4dCB4PSIyMDAiIHk9IjQ1IiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QmVyaWNodGUgJiBBbmFseXRpY3M8L3RleHQ+Cjwvc3ZnPgo='">
+                        <div class="screenshot-info">
+                            <h4>Berichte & Analytics</h4>
+                            <p>Umfassende Datenauswertung mit grafischen Darstellungen und detaillierten Leistungsberichten.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Specifications -->
+        <section id="technical" class="section tech-specs">
+            <div class="container">
+                <h2 class="section-title">Technische Spezifikationen</h2>
+                <p class="section-subtitle">Moderne Technologie-Stack für maximale Performance, Sicherheit und Skalierbarkeit</p>
+                
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <h4>🖥️ Frontend-Technologie</h4>
+                        <ul class="spec-list">
+                            <li>React 18 mit TypeScript</li>
+                            <li>Vite Build-System</li>
+                            <li>Wouter Client-Side Routing</li>
+                            <li>TanStack Query (React Query)</li>
+                            <li>Tailwind CSS + Radix UI</li>
+                            <li>React Hook Form + Zod Validation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="spec-item">
+                        <h4>⚙️ Backend-Architektur</h4>
+                        <ul class="spec-list">
+                            <li>Node.js 20 + Express.js</li>
+                            <li>TypeScript für Typsicherheit</li>
+                            <li>RESTful API Design</li>
+                            <li>Session-basierte Authentifizierung</li>
+                            <li>Centralisierte Fehlerbehandlung</li>
+                            <li>Request/Response Logging</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="spec-item">
+                        <h4>🗄️ Datenbank & ORM</h4>
+                        <ul class="spec-list">
+                            <li>PostgreSQL 16</li>
+                            <li>Drizzle ORM für Type-Safety</li>
+                            <li>Drizzle Kit Migrations</li>
+                            <li>Neon Database Serverless</li>
+                            <li>Automatische Backup-Systeme</li>
+                            <li>Schema-basierte Validierung</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="spec-item">
+                        <h4>🤖 Telegram Integration</h4>
+                        <ul class="spec-list">
+                            <li>Telegram Bot API</li>
+                            <li>WebHook-basierte Updates</li>
+                            <li>Multi-Language Support</li>
+                            <li>Nachrichtenvorlagen</li>
+                            <li>Rate-Limiting & Sicherheit</li>
+                            <li>Echtzeit-Synchronisation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="spec-item">
+                        <h4>🌐 Multi-Language Support</h4>
+                        <ul class="spec-list">
+                            <li>Deutsch, Englisch, Arabisch</li>
+                            <li>RTL (Right-to-Left) Layout</li>
+                            <li>Dynamischer Sprachwechsel</li>
+                            <li>Bot-System Synchronisation</li>
+                            <li>Kulturelle Anpassungen</li>
+                            <li>Lokalisierte Datumsformate</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="spec-item">
+                        <h4>🔒 Sicherheit & Backup</h4>
+                        <ul class="spec-list">
+                            <li>Verschlüsselte Datenübertragung</li>
+                            <li>HTTPS/TLS Zertifikate</li>
+                            <li>Automatische DB-Backups</li>
+                            <li>DSGVO-konforme Datenhaltung</li>
+                            <li>Aktivitäts-Logging</li>
+                            <li>Disaster Recovery System</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="section pricing">
+            <div class="container">
+                <h2 class="section-title">Preispakete</h2>
+                <p class="section-subtitle">Wählen Sie das passende Paket für Ihr Unternehmen - Alle Features inklusive</p>
+                
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>Jahres-Lizenz</h3>
+                        <div class="price">450€<span class="price-period">/Jahr</span></div>
+                        <ul class="features-list">
+                            <li>Vollständige Software-Lizenz</li>
+                            <li>Telegram Bot Integration</li>
+                            <li>Multi-Language Support (DE/EN/AR)</li>
+                            <li>Unbegrenzte Techniker</li>
+                            <li>Alle Export-Funktionen</li>
+                            <li>E-Mail Support</li>
+                            <li>Regelmäßige Updates</li>
+                            <li>Datenschutz-konform (DSGVO)</li>
+                        </ul>
+                        <button class="btn btn-telegram" onclick="buyPackage('yearly')">
+                            📱 Über Telegram kaufen
+                        </button>
+                    </div>
+                    
+                    <div class="pricing-card popular">
+                        <div class="popular-badge">Beliebt</div>
+                        <h3>Lebenslange Lizenz</h3>
+                        <div class="price">1.500€<span class="price-period">einmalig</span></div>
+                        <ul class="features-list">
+                            <li>Lebenslange Software-Lizenz</li>
+                            <li>Telegram Bot Integration</li>
+                            <li>Multi-Language Support (DE/EN/AR)</li>
+                            <li>Unbegrenzte Techniker</li>
+                            <li>Alle Export-Funktionen</li>
+                            <li>Prioritäts-Support</li>
+                            <li>Lebenslange Updates inklusive</li>
+                            <li>Datenschutz-konform (DSGVO)</li>
+                            <li>Individuelle Anpassungen möglich</li>
+                        </ul>
+                        <button class="btn btn-telegram" onclick="buyPackage('lifetime')">
+                            📱 Über Telegram kaufen
+                        </button>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 3rem;">
+                    <p style="color: var(--text-light); font-size: 0.9rem;">
+                        💳 Sichere Zahlung über Telegram Bot<br>
+                        🔄 14 Tage Geld-zurück-Garantie<br>
+                        ⚡ Sofortige Bereitstellung nach Zahlung
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">Kontakt & Demo</h2>
+                <p class="section-subtitle">Erleben Sie die Zukunft des Techniker-Managements - Fordern Sie noch heute Ihre persönliche Demo an</p>
+                
+                <div class="cta-buttons">
+                    <a href="https://techniker-task-manager.replit.app" class="btn btn-primary" target="_blank">🚀 Live Demo öffnen</a>
+                    <a href="mailto:info@techniker-manager.de" class="btn btn-outline">📧 Beratung anfordern</a>
+                </div>
+                
+                <div style="margin-top: 3rem; text-align: center;">
+                    <p style="color: var(--text-light); margin-bottom: 1rem;">
+                        <strong>Schnellkontakt:</strong>
+                    </p>
+                    <p style="color: var(--text-dark);">
+                        📞 +49 (0) 123 456 789 | 📧 demo@techniker-manager.de<br>
+                        🌐 www.techniker-task-manager.de
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>Produkt</h4>
+                        <p>Revolutionäre Telegram Bot Lösung für modernes Techniker-Management mit umfassender Automatisierung.</p>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Features</h4>
+                        <a href="#features">Aufgaben-Management</a><br>
+                        <a href="#features">Techniker-Verwaltung</a><br>
+                        <a href="#features">Rechnungs-System</a><br>
+                        <a href="#features">Multi-Language Support</a>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Technologie</h4>
+                        <a href="#technical">Frontend: React + TypeScript</a><br>
+                        <a href="#technical">Backend: Node.js + Express</a><br>
+                        <a href="#technical">Datenbank: PostgreSQL</a><br>
+                        <a href="#technical">Integration: Telegram Bot API</a>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Kontakt</h4>
+                        <p>📧 info@techniker-manager.de</p>
+                        <p>📞 +49 (0) 123 456 789</p>
+                        <p>🌐 www.techniker-task-manager.de</p>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Techniker Task Manager. Alle Rechte vorbehalten. | <a href="#datenschutz">Datenschutz</a> | <a href="#impressum">Impressum</a></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2 style="margin-bottom: 1rem; color: var(--text-dark);">Kunden-Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">E-Mail-Adresse:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Passwort:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Anmelden</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Customer Portal -->
+    <div id="customerPortal" class="customer-portal">
+        <div class="portal-header">
+            <div class="container">
+                <div class="portal-nav">
+                    <div class="welcome-text">
+                        Willkommen, <span id="customerName">Kunde</span>!
+                    </div>
+                    <button class="logout-btn" onclick="logout()">Abmelden</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="portal-content">
+                <div class="portal-card">
+                    <h3>Download-Bereich</h3>
+                    <p>Laden Sie die neueste Version der Software herunter:</p>
+                    <button class="download-btn" onclick="downloadSoftware()">
+                        📥 Software herunterladen (v2.1.0)
+                    </button>
+                    <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 1rem;">
+                        Letzte Aktualisierung: 26. Juni 2025<br>
+                        Dateigröße: ~15 MB
+                    </p>
+                </div>
+                
+                <div class="portal-card">
+                    <h3>Technischer Support</h3>
+                    <p>Benötigen Sie Hilfe oder haben Fragen? Unser Support-Team hilft Ihnen gerne:</p>
+                    <button class="support-btn" onclick="contactSupport()">
+                        📱 Telegram Support kontaktieren
+                    </button>
+                    <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 1rem;">
+                        Antwortzeit: In der Regel < 2 Stunden<br>
+                        Verfügbar: Mo-Fr 9:00-18:00 Uhr
+                    </p>
+                </div>
+                
+                <div class="portal-card">
+                    <h3>Ihr Abonnement</h3>
+                    <div id="subscriptionInfo">
+                        <p><strong>Plan:</strong> <span id="planType">Lebenslange Lizenz</span></p>
+                        <p><strong>Status:</strong> <span style="color: var(--success-color);">✓ Aktiv</span></p>
+                        <p><strong>Gekauft am:</strong> <span id="purchaseDate">15. Januar 2025</span></p>
+                        <p><strong>Updates:</strong> <span style="color: var(--success-color);">Lebenslang inklusive</span></p>
+                    </div>
+                </div>
+                
+                <div class="portal-card">
+                    <h3>Updates & Changelog</h3>
+                    <div style="max-height: 200px; overflow-y: auto;">
+                        <div style="border-left: 3px solid var(--primary-color); padding-left: 1rem; margin-bottom: 1rem;">
+                            <strong>v2.1.0</strong> - 26. Juni 2025
+                            <ul style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">
+                                <li>✅ Verbesserte Telegram Bot Performance</li>
+                                <li>✅ Neue Export-Funktionen</li>
+                                <li>🔧 Bugfixes und Optimierungen</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="border-left: 3px solid var(--border-color); padding-left: 1rem; margin-bottom: 1rem;">
+                            <strong>v2.0.5</strong> - 20. Juni 2025
+                            <ul style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">
+                                <li>✅ Multi-Language Synchronization</li>
+                                <li>✅ Erweiterte Sicherheitsfeatures</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State management
+        let isLoggedIn = false;
+        let currentCustomer = null;
+
+        // Language switcher function
+        function toggleLanguage() {
+            alert('Sprachauswahl wird in Kürze verfügbar sein!\n\nVerfügbare Sprachen:\n• Deutsch (DE)\n• English (EN)\n• العربية (AR)');
+        }
+        
+        // Login modal functions
+        function openLoginModal() {
+            document.getElementById('loginModal').style.display = 'block';
+        }
+        
+        function closeLoginModal() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+        
+        // Login form handling
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple demo authentication
+            if (email && password) {
+                isLoggedIn = true;
+                currentCustomer = {
+                    name: email.split('@')[0],
+                    email: email,
+                    planType: 'Lebenslange Lizenz',
+                    purchaseDate: '15. Januar 2025'
+                };
+                
+                // Hide landing page and show portal
+                document.getElementById('landingPage').style.display = 'none';
+                document.getElementById('customerPortal').style.display = 'block';
+                document.getElementById('loginModal').style.display = 'none';
+                
+                // Update customer info
+                document.getElementById('customerName').textContent = currentCustomer.name;
+                document.getElementById('planType').textContent = currentCustomer.planType;
+                document.getElementById('purchaseDate').textContent = currentCustomer.purchaseDate;
+                
+                alert('Erfolgreich angemeldet! Willkommen in Ihrem Kunden-Portal.');
+            } else {
+                alert('Bitte geben Sie gültige Anmeldedaten ein.');
+            }
+        });
+        
+        // Logout function
+        function logout() {
+            isLoggedIn = false;
+            currentCustomer = null;
+            
+            // Show landing page and hide portal
+            document.getElementById('landingPage').style.display = 'block';
+            document.getElementById('customerPortal').style.display = 'none';
+            
+            // Reset form
+            document.getElementById('loginForm').reset();
+            
+            alert('Sie wurden erfolgreich abgemeldet.');
+        }
+        
+        // Purchase functions
+        function buyPackage(packageType) {
+            let message = '';
+            let price = '';
+            
+            if (packageType === 'yearly') {
+                price = '450€';
+                message = `Hallo! Ich möchte die Jahres-Lizenz des Techniker Task Managers für ${price} kaufen. 
+
+📋 Paket-Details:
+• Jahres-Lizenz
+• Vollständige Software
+• Telegram Bot Integration
+• Multi-Language Support
+• Alle Features inklusive
+• E-Mail Support
+• Updates für 1 Jahr
+
+Bitte senden Sie mir die Zahlungsdetails.`;
+            } else if (packageType === 'lifetime') {
+                price = '1.500€';
+                message = `Hallo! Ich möchte die Lebenslange Lizenz des Techniker Task Managers für ${price} kaufen. 
+
+📋 Paket-Details:
+• Lebenslange Lizenz
+• Vollständige Software
+• Telegram Bot Integration
+• Multi-Language Support
+• Alle Features inklusive
+• Prioritäts-Support
+• Lebenslange Updates
+• Individuelle Anpassungen
+
+Bitte senden Sie mir die Zahlungsdetails.`;
+            }
+            
+            const telegramUrl = `https://t.me/TechnikerTaskManager_Bot?start=purchase_${packageType}`;
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Try to open Telegram app first, fallback to web
+            window.open(telegramUrl, '_blank');
+            
+            // Show confirmation
+            setTimeout(() => {
+                alert(`Sie werden zu unserem Telegram Bot weitergeleitet um das ${packageType === 'yearly' ? 'Jahres' : 'Lebenslang'}-Paket für ${price} zu kaufen.\n\nFalls sich Telegram nicht automatisch öffnet, suchen Sie nach "@TechnikerTaskManager_Bot" in Telegram.`);
+            }, 1000);
+        }
+        
+        // Customer portal functions
+        function downloadSoftware() {
+            if (!isLoggedIn) {
+                alert('Bitte melden Sie sich an, um die Software herunterzuladen.');
+                return;
+            }
+            
+            // Simulate download
+            alert('Download wird gestartet...\n\nDie Software wird als ZIP-Datei heruntergeladen.\nNach dem Download finden Sie eine Installationsanleitung in der README.txt Datei.');
+            
+            // In a real implementation, this would trigger an actual download
+            console.log('Downloading software package...');
+        }
+        
+        function contactSupport() {
+            const supportMessage = `Hallo Support-Team!
+
+Ich benötige Hilfe mit dem Techniker Task Manager.
+
+👤 Kunde: ${currentCustomer ? currentCustomer.name : 'Unbekannt'}
+📧 E-Mail: ${currentCustomer ? currentCustomer.email : 'Nicht angemeldet'}
+🎫 Plan: ${currentCustomer ? currentCustomer.planType : 'Unbekannt'}
+
+Mein Problem/Meine Frage:
+[Bitte beschreiben Sie hier Ihr Anliegen]
+
+Vielen Dank für Ihre Unterstützung!`;
+            
+            const telegramUrl = `https://t.me/TechnikerTaskManager_Support?text=${encodeURIComponent(supportMessage)}`;
+            window.open(telegramUrl, '_blank');
+        }
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Header background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'var(--bg-white)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+        
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all feature cards
+        document.querySelectorAll('.feature-card, .spec-item, .pricing-card, .screenshot-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('loginModal');
+            if (event.target === modal) {
+                closeLoginModal();
+            }
+        });
+    </script>
+</body>
+</html>

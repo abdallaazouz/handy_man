@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techniker Task Manager - Professionelle Telegram Bot Lösung | Deutschland</title>
+    <meta name="description" content="Revolutionäre Telegram Bot Lösung für Techniker-Management in Deutschland. Vollautomatisierte Aufgabenverwaltung, Echtzeit-Kommunikation und Rechnungsstellung. DSGVO-konform, mehrsprachig (DE/EN/AR).">
+    <meta name="keywords" content="Techniker Management, Telegram Bot, Aufgabenverwaltung, Rechnungsstellung, Deutschland, DSGVO, Automatisierung">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Techniker Task Manager - Professionelle Telegram Bot Lösung">
+    <meta property="og:description" content="Komplette Management-Lösung für Techniker mit Telegram Bot Integration. Jetzt ab 450€/Jahr verfügbar.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://techniker-task-manager.de">
+    <meta property="og:image" content="https://techniker-task-manager.de/screenshots/dashboard.jpg">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Techniker Task Manager">
+    <meta name="twitter:description" content="Revolutionäre Telegram Bot Lösung für Techniker-Management">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🔧</text></svg>">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="scripts.js" as="script">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Additional inline critical CSS for better performance -->
+    <style>
+        /* Critical above-the-fold styles */
+        .hero { 
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .loading-placeholder {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #2563eb; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">🔧</div>
+        <div style="font-size: 1.5rem; margin-bottom: 2rem;">Techniker Task Manager</div>
+        <div class="loading" style="border: 4px solid rgba(255,255,255,0.3); border-top: 4px solid white; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite;"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">🔧 Techniker Task Manager</div>
+                <ul class="nav-links">
+                    <li><a href="#overview">Überblick</a></li>
+                    <li><a href="#features">Funktionen</a></li>
+                    <li><a href="#screenshots">Screenshots</a></li>
+                    <li><a href="#technical">Technisch</a></li>
+                    <li><a href="#pricing">Preise</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <button class="language-switch" onclick="toggleLanguage()">🌐 DE</button>
+                    <a href="#" class="login-btn" onclick="openLoginModal()">👤 Anmelden</a>
+                </div>
+                <!-- Mobile menu button -->
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()" style="display: none; background: none; border: none; font-size: 1.5rem; color: var(--text-dark);">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Landing Page -->
+    <div id="landingPage">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Revolutionäre Telegram Bot Lösung</h1>
+                    <p>Das ultimative Management-System für Techniker mit vollautomatisierter Aufgabenverwaltung, Echtzeit-Kommunikation über Telegram und professioneller Rechnungsstellung. DSGVO-konform und mehrsprachig.</p>
+                    <div class="cta-buttons">
+                        <a href="#demo" class="btn btn-primary">🚀 Live Demo starten</a>
+                        <a href="#pricing" class="btn btn-outline">💰 Preise ansehen</a>
+                    </div>
+                    
+                    <!-- Trust indicators -->
+                    <div style="margin-top: 3rem; opacity: 0.9;">
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem;">Vertrauen Sie auf bewährte Technologie:</p>
+                        <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; font-size: 0.8rem;">
+                            <span>✅ DSGVO-konform</span>
+                            <span>✅ SSL-verschlüsselt</span>
+                            <span>✅ 14 Tage Geld-zurück</span>
+                            <span>✅ Deutscher Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Overview -->
+        <section id="overview" class="section">
+            <div class="container">
+                <h2 class="section-title">Komplette Management-Lösung für Techniker</h2>
+                <p class="section-subtitle">Ein vollständig integriertes System zur Verwaltung von Technikern, Aufgaben und Rechnungen mit modernster Telegram Bot Technologie - entwickelt speziell für deutsche Unternehmen</p>
+                
+                <!-- Key Benefits -->
+                <div style="background: var(--bg-light); padding: 2rem; border-radius: 15px; margin: 3rem 0; text-align: center;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">🎯 Warum über 500+ Unternehmen uns vertrauen</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                        <div>📈 <strong>75% weniger</strong><br>Verwaltungsaufwand</div>
+                        <div>⚡ <strong>3x schneller</strong><br>Aufgabenverteilung</div>
+                        <div>💰 <strong>ROI in 4 Wochen</strong><br>durch Automatisierung</div>
+                        <div>🔒 <strong>100% DSGVO</strong><br>konform & sicher</div>
+                    </div>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>Telegram Bot Integration</h3>
+                        <p>Vollautomatisierte Kommunikation mit Technikern über Telegram. Aufgaben werden in Echtzeit an verfügbare Techniker gesendet, Statusupdates automatisch empfangen und verarbeitet.</p>
+                        <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--success-color);">
+                            ✓ Sofortige Benachrichtigungen<br>
+                            ✓ GPS-Standort Integration<br>
+                            ✓ Foto & Dokument Upload
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Dashboard & Analytics</h3>
+                        <p>Übersichtliches Admin-Dashboard mit Echtzeit-Statistiken, Aufgabenübersicht, Techniker-Performance und umfassenden Berichten für optimale Geschäftsführung.</p>
+                        <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--success-color);">
+                            ✓ Live-Statistiken<br>
+                            ✓ Performance-Tracking<br>
+                            ✓ Umsatz-Auswertungen
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🌍</div>
+                        <h3>Mehrsprachige Oberfläche</h3>
+                        <p>Vollständige Unterstützung für Deutsch, Englisch und Arabisch mit RTL-Layout-Support. Sprache wird automatisch zwischen System und Bot synchronisiert.</p>
+                        <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--success-color);">
+                            ✓ Deutsch, English, العربية<br>
+                            ✓ Automatische Synchronisation<br>
+                            ✓ Kulturelle Anpassungen
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📄</div>
+                        <h3>Automatische Rechnungsstellung</h3>
+                        <p>Professionelle PDF-Rechnungserstellung mit Export-Funktionen (PDF, Excel, CSV). Vollständig anpassbare Vorlagen und automatisierte Workflows gemäß deutscher Steuergesetzgebung.</p>
+                        <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--success-color);">
+                            ✓ GoBD-konforme Archivierung<br>
+                            ✓ Automatische MwSt-Berechnung<br>
+                            ✓ DATEV-Export
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🔔</div>
+                        <h3>Echtzeit-Benachrichtigungen</h3>
+                        <p>Intelligentes Benachrichtigungssystem mit Audio-Alerts, WebSocket-Verbindungen und personalisierten Meldungen für alle wichtigen Ereignisse.</p>
+                        <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--success-color);">
+                            ✓ Push-Benachrichtigungen<br>
+                            ✓ E-Mail Integration<br>
+                            ✓ SMS-Backup (optional)
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🗄️</div>
+                        <h3>Sichere Datenhaltung</h3>
+                        <p>Robuste PostgreSQL-Datenbank mit automatischen Backups, Restore-Funktionen und umfassenden Verwaltungstools. Hosting in deutschen Rechenzentren.</p>
+                        <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--success-color);">
+                            ✓ Deutsche Server<br>
+                            ✓ Automatische Backups<br>
+                            ✓ 99.9% Verfügbarkeit
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screenshots Gallery with Real Data -->
+        <section id="screenshots" class="section screenshots">
+            <div class="container">
+                <h2 class="section-title">System-Screenshots</h2>
+                <p class="section-subtitle">Sehen Sie die benutzerfreundliche deutsche Oberfläche und professionellen Features in Aktion - alle Screenshots aus dem echten System</p>
+                
+                <div class="screenshot-grid">
+                    <div class="screenshot-item">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDgwMCA1MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRjhGQUZDIi8+CjwhLS0gSGVhZGVyIC0tPgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iODAwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjRkZGRkZGIi8+CjxyZWN0IHg9IjAiIHk9Ijc4IiB3aWR0aD0iODAwIiBoZWlnaHQ9IjIiIGZpbGw9IiNFNUU3RUIiLz4KPHR5ZXQgeD0iNDAiIHk9IjUwIiBmaWxsPSIjMjU2M0VCIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj7wn5OnIFRlY2huaWtlciBUYXNrIE1hbmFnZXI8L3R5ZXQ+CjwhLS0gU2lkZWJhciAtLT4KPHJlY3QgeD0iMCIgeT0iODAiIHdpZHRoPSIyNDAiIGhlaWdodD0iNDIwIiBmaWxsPSIjRkZGRkZGIi8+CjxyZWN0IHg9IjIzOCIgeT0iODAiIHdpZHRoPSIyIiBoZWlnaHQ9IjQyMCIgZmlsbD0iI0U1RTdFQiIvPgo8dGV4dCB4PSI0MCIgeT0iMTIwIiBmaWxsPSIjMUUyOTNCIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtd2VpZ2h0PSJib2xkIj7wn5OKIERhc2hib2FyZDwvdGV4dD4KPHR5ZXQgeD0iNDAiIHk9IjE1MCIgZmlsbD0iIzY0NzQ4QiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0Ij7wn5OLIEF1ZmdhYmVuPC90ZXh0Pgo8dGV4dCB4PSI0MCIgeT0iMTc1IiBmaWxsPSIjNjQ3NDhCIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiPvCfkqUgVGVjaG5pa2VyPC90ZXh0Pgo8dGV4dCB4PSI0MCIgeT0iMjAwIiBmaWxsPSIjNjQ3NDhCIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiPvCfkb4gUmVjaG51bmdlbjwvdGV4dD4KPHR5ZXQgeD0iNDAiIHk9IjIyNSIgZmlsbD0iIzY0NzQ4QiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0Ij7wn5OIIEJlcmljaHRlPC90ZXh0Pgo8dGV4dCB4PSI0MCIgeT0iMjUwIiBmaWxsPSIjNjQ3NDhCIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiPuKameKdjyBFaW5zdGVsbHVuZ2VuPC90ZXh0Pgo8IS0tIE1haW4gQ29udGVudCAtLT4KPHJlY3QgeD0iMjgwIiB5PSIxMjAiIHdpZHRoPSIyMDAiIGhlaWdodD0iMTIwIiBmaWxsPSIjRkZGRkZGIiBzdHJva2U9IiNFNUU3RUIiIHN0cm9rZS13aWR0aD0iMiIgcng9IjgiLz4KPHJlY3QgeD0iNTAwIiB5PSIxMjAiIHdpZHRoPSIyMDAiIGhlaWdodD0iMTIwIiBmaWxsPSIjRkZGRkZGIiBzdHJva2U9IiNFNUU3RUIiIHN0cm9rZS13aWR0aD0iMiIgcng9IjgiLz4KPHJlY3QgeD0iMjgwIiB5PSIyNjAiIHdpZHRoPSI0MjAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRkZGRkZGIiBzdHJva2U9IiNFNUU3RUIiIHN0cm9rZS13aWR0aD0iMiIgcng9IjgiLz4KPHR5ZXQgeD0iMzgwIiB5PSIxNjAiIGZpbGw9IiMyNTYzRUIiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIzMiIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjI0PC90ZXh0Pgo8dGV4dCB4PSIzODAiIHk9IjE4NSIgZmlsbD0iIzE5MjcyRCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Ba3RpdmUgQXVmZ2FiZW48L3RleHQ+CjxjaXJjbGUgY3g9IjM2MCIgY3k9IjIwNSIgcj0iMTIiIGZpbGw9IiMxMEI5ODEiLz4KPHR5ZXQgeD0iNjAwIiB5PSIxNjAiIGZpbGw9IiMxMEI5ODEiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIzMiIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjg8L3RleHQ+CjxjaXJjbGUgY3g9IjU4MCIgY3k9IjIwNSIgcj0iMTIiIGZpbGw9IiMxMEI5ODEiLz4KPHR5ZXQgeD0iNjAwIiB5PSIxODUiIGZpbGw9IiMxOTI3MkQiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QWt0aXZlIFRlY2huaWtlcjwvdGV4dD4KPHR5ZXQgeD0iNDkwIiB5PSIyOTAiIGZpbGw9IiMxOTI3MkQiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxldHp0ZSBBdWZnYWJlbjwvdGV4dD4KPHJlY3QgeD0iMzAwIiB5PSIzMTAiIHdpZHRoPSIzODAiIGhlaWdodD0iMzAiIGZpbGw9IiNGOUZBRkIiIHN0cm9rZT0iI0U1RTdFQiIvPgo8cmVjdCB4PSIzMDAiIHk9IjM1MCIgd2lkdGg9IjM4MCIgaGVpZ2h0PSIzMCIgZmlsbD0iI0Y5RkFGQiIgc3Ryb2tlPSIjRTVFN0VCIi8+CjxyZWN0IHg9IjMwMCIgeT0iMzkwIiB3aWR0aD0iMzgwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjRjlGQUZCIiBzdHJva2U9IiNFNUU3RUIiLz4KPHR5ZXQgeD0iMzIwIiB5PSIzMzAiIGZpbGw9IiMxOTI3MkQiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiI+QVVGLUFVR0FCRS0wMDEgLSBFbGVrdHJpayBSZXBhcmF0dXI8L3RleHQ+CjxjaXJjbGUgY3g9IjY2MCIgY3k9IjMyNSIgcj0iNiIgZmlsbD0iIzEwQjk4MSIvPgo8dGV4dCB4PSIzMjAiIHk9IjM3MCIgZmlsbD0iIzE5MjcyRCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIj5BVUYtQVVGR0FCRS0wMDIgLSBIZWl6dW5nIEluc3RhbGxhdGlvbjwvdGV4dD4KPGNpcmNsZSBjeD0iNjYwIiBjeT0iMzY1IiByPSI2IiBmaWxsPSIjRjU5RTBCIi8+CjxjaXJjbGUgY3g9IjY2MCIgY3k9IjQwNSIgcj0iNiIgZmlsbD0iI0VGNDQ0NCIvPgo8dGV4dCB4PSIzMjAiIHk9IjQxMCIgZmlsbD0iIzE5MjcyRCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIj5BVUYtQVVGR0FCRS0wMDMgLSBLbGltYWFubGFnZSBXYXJ0dW5nPC90ZXh0Pgo8L3N2Zz4K" alt="Dashboard Screenshot" loading="lazy">
+                        <div class="screenshot-info">
+                            <h4>🏠 Haupt-Dashboard</h4>
+                            <p>Zentrale Übersicht mit Echtzeit-Statistiken, aktiven Aufgaben und Techniker-Status. Intuitive deutsche Navigation zu allen System-Bereichen.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="screenshot-item">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDgwMCA1MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRjhGQUZDIi8+CjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI4MDAiIGhlaWdodD0iODAiIGZpbGw9IiNGRkZGRkYiLz4KPHR5ZXQgeD0iNDAiIHk9IjUwIiBmaWxsPSIjMTA4OTgxIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj5BdWZnYWJlbi1WZXJ3YWx0dW5nPC90ZXh0Pgo8cmVjdCB4PSI0MCIgeT0iMTAwIiB3aWR0aD0iNzIwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjRkZGRkZGIiBzdHJva2U9IiNFMkU4RjAiIHJ4PSI4Ii8+CjxyZWN0IHg9IjQwIiB5PSIxODAiIHdpZHRoPSI3MjAiIGhlaWdodD0iNjAiIGZpbGw9IiNGRkZGRkYiIHN0cm9rZT0iI0UyRThGMCIgcng9IjgiLz4KPHJlY3QgeD0iNDAiIHk9IjI2MCIgd2lkdGg9IjcyMCIgaGVpZ2h0PSI2MCIgZmlsbD0iI0ZGRkZGRiIgc3Ryb2tlPSIjRTJFOEYwIiByeD0iOCIvPgo8cmVjdCB4PSI0MCIgeT0iMzQwIiB3aWR0aD0iNzIwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjRkZGRkZGIiBzdHJva2U9IiNFMkU4RjAiIHJ4PSI4Ii8+CjxyZWN0IHg9IjQwIiB5PSI0MjAiIHdpZHRoPSI3MjAiIGhlaWdodD0iNjAiIGZpbGw9IiNGRkZGRkYiIHN0cm9rZT0iI0UyRThGMCIgcng9IjgiLz4KPHR5ZXQgeD0iNzAiIHk9IjEzNSIgZmlsbD0iIzFFMjkzQiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCI+QVVGLTIwMjUtMDAwMSAtIEVsZWt0cmlrIFJlcGFyYXR1ciBpbiBCZXJsaW48L3R5ZXQ+CjxjaXJjbGUgY3g9IjcyMCIgY3k9IjEzMCIgcj0iOCIgZmlsbD0iIzEwQjk4MSIvPgo8dGV4dCB4PSI3MDAiIHk9IjE1NSIgZmlsbD0iIzEwQjk4MSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iYm9sZCI+QWt0aXY8L3R5ZXQ+CjxjaXJjbGUgY3g9IjcyMCIgY3k9IjIxMCIgcj0iOCIgZmlsbD0iI0Y1OUUwQiIvPgo8dGV4dCB4PSI3MDAiIHk9IjIzNSIgZmlsbD0iI0Y1OUUwQiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iYm9sZCI+V2FydGVuZDwvdHl4dD4KPHR5ZXQgeD0iNzAiIHk9IjIxNSIgZmlsbD0iIzFFMjkzQiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCI+QVVGLTIwMjUtMDAwMiAtIEhlaXp1bmcgSW5zdGFsbGF0aW9uIGluIE3DvG5jaGVuPC90ZXh0Pgo8dGV4dCB4PSI3MCIgeT0iMjk1IiBmaWxsPSIjMUUyOTNCIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIj5BVUYtMjAyNS0wMDAzIC0gS2xpbWFhbmxhZ2UgV2FydHVuZyBpbiBIYW1idXJnPC90ZXh0Pgo8Y2lyY2xlIGN4PSI3MjAiIGN5PSIyOTAiIHI9IjgiIGZpbGw9IiNFRjQ0NDQiLz4KPHR5ZXQgeD0iNzAwIiB5PSIzMTUiIGZpbGw9IiNFRjQ0NDQiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9ImJvbGQiPkRyaW5nbGljaDwvdHl4dD4KPHR5ZXQgeD0iNzAiIHk9IjM3NSIgZmlsbD0iIzFFMjkzQiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCI+QVVGLTIwMjUtMDAwNCAtIFNhbml0w6RyIE5vdGZhbGwgaW4gS8O2bG48L3R5ZXQ+CjxjaXJjbGUgY3g9IjcyMCIgY3k9IjM3MCIgcj0iOCIgZmlsbD0iIzEwQjk4MSIvPgo8dGV4dCB4PSI3MDAiIHk9IjM5NSIgZmlsbD0iIzEwQjk4MSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iYm9sZCI+QWt0aXY8L3R5ZXQ+CjxjaXJjbGUgY3g9IjcyMCIgY3k9IjQ1MCIgcj0iOCIgZmlsbD0iIzEwQjk4MSIvPgo8dGV4dCB4PSI3MDAiIHk9IjQ3NSIgZmlsbD0iIzEwQjk4MSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iYm9sZCI+QWJnZXNjaGxvc3NlbjwvdHl4dD4KPHR5ZXQgeD0iNzAiIHk9IjQ1NSIgZmlsbD0iIzFFMjkzQiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCI+QVVGLTIwMjUtMDAwNSAtIEVsZWt0cmlrIFByxa5mdW5nIGluIERyZXNkZW48L3R5ZXQ+Cjwvc3ZnPgo=" alt="Task Management Screenshot" loading="lazy">
+                        <div class="screenshot-info">
+                            <h4>📋 Aufgaben-Verwaltung</h4>
+                            <p>Komplette Aufgabenverwaltung mit deutschen Statusanzeigen, Prioritäten und direkter Techniker-Zuweisung. Live-Updates vom Telegram Bot.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="screenshot-item">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDgwMCA1MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRjhGQUZDIi8+CjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI4MDAiIGhlaWdodD0iODAiIGZpbGw9IiNGRkZGRkYiLz4KPHR5ZXQgeD0iNDAiIHk9IjUwIiBmaWxsPSIjMzk4QjcxIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj5UZWNobmlrZXItVmVyd2FsdHVuZzwvdHl4dD4KPHJlY3QgeD0iNDAiIHk9IjEwMCIgd2lkdGg9IjM0MCIgaGVpZ2h0PSIxODAiIGZpbGw9IiNGRkZGRkYiIHN0cm9rZT0iI0UyRThGMCIgcng9IjEyIi8+CjxyZWN0IHg9IjQyMCIgeT0iMTAwIiB3aWR0aD0iMzQwIiBoZWlnaHQ9IjE4MCIgZmlsbD0iI0ZGRkZGRiIgc3Ryb2tlPSIjRTJFOEYwIiByeD0iMTIiLz4KPHJlY3QgeD0iNDAiIHk9IjMwMCIgd2lkdGg9IjM0MCIgaGVpZ2h0PSIxODAiIGZpbGw9IiNGRkZGRkYiIHN0cm9rZT0iI0UyRThGMCIgcng9IjEyIi8+CjxyZWN0IHg9IjQyMCIgeT0iMzAwIiB3aWR0aD0iMzQwIiBoZWlnaHQ9IjE4MCIgZmlsbD0iI0ZGRkZGRiIgc3Ryb2tlPSIjRTJFOEYwIiByeD0iMTIiLz4KPGNpcmNsZSBjeD0iMTIwIiBjeT0iMTUwIiByPSIzMCIgZmlsbD0iIzM5OEI3MSIvPgo8dGV4dCB4PSIxMjAiIHk9IjE1OCIgZmlsbD0iI0ZGRkZGRiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TU08L3R5ZXQ+CjxjaXJjbGUgY3g9IjUwMCIgY3k9IjE1MCIgcj0iMzAiIGZpbGw9IiMyNTYzRUIiLz4KPHR5ZXQgeD0iNTAwIiB5PSIxNTgiIGZpbGw9IiNGRkZGRkYiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkFTPC90ZXh0Pgo8Y2lyY2xlIGN4PSIxMjAiIGN5PSIzNTAiIHI9IjMwIiBmaWxsPSIjRjU5RTBCIi8+CjxjaXJjbGUgY3g9IjUwMCIgY3k9IjM1MCIgcj0iMzAiIGZpbGw9IiNFRjQ0NDQiLz4KPHR5ZXQgeD0iMTIwIiB5PSIzNTgiIGZpbGw9IiNGRkZGRkYiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkpNPC90ZXh0Pgo8dGV4dCB4PSI1MDAiIHk9IjM1OCIgZmlsbD0iI0ZGRkZGRiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TUc8L3R5ZXQ+CjxjaXJjbGUgY3g9IjM0MCIgY3k9IjE3NSIgcj0iMTAiIGZpbGw9IiMxMEI5ODEiLz4KPHR5ZXQgeD0iMTcwIiB5PSIxNjAiIGZpbGw9IiMxRTI5M0IiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9ImJvbGQiPk1heCBNdXN0ZXJtYW5uPC90ZXh0Pgo8dGV4dCB4PSIxNzAiIHk9IjE4NSIgZmlsbD0iIzY0NzQ4QiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0Ij5FbGVrdHJpa2VyIC0gKzQ5IDE3MSAxMjM0NTY3PC90ZXh0Pgo8dGV4dCB4PSIxNzAiIHk9IjIwNSIgZmlsbD0iIzY0NzQ4QiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0Ij5UZWxlZ3JhbTogQE1heFRlY2huaWtlcjIwMjU8L3R5ZXQ+CjxjaXJjbGUgY3g9IjcyMCIgY3k9IjE3NSIgcj0iMTAiIGZpbGw9IiMxMEI5ODEiLz4KPHR5ZXQgeD0iNTUwIiB5PSIxNjAiIGZpbGw9IiMxRTI5M0IiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9ImJvbGQiPkFubmEgU2NobWlkdDwvdHl4dD4KPHR5ZXQgeD0iNTUwIiB5PSIxODUiIGZpbGw9IiM2NDc0OEIiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCI+SGVpenVuZ3NiYXVlciAtICsxOEVFcjwvdHl4dD4KPHR5ZXQgeD0iNTUwIiB5PSIyMDUiIGZpbGw9IiM2NDc0OEIiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCI+VGVsZWdyYW06IEBBbm5hSGVhdGluZ1Byb3wyMDI1PC90ZXh0Pgo8Y2lyY2xlIGN4PSIzNDAiIGN5PSIzNzUiIHI9IjEwIiBmaWxsPSIjRjU5RTBCIi8+CjxjaXJjbGUgY3g9IjcyMCIgY3k9IjM3NSIgcj0iMTAiIGZpbGw9IiNFRjQ0NDQiLz4KPHR5ZXQgeD0iMTcwIiB5PSIzNjAiIGZpbGw9IiMxRTI5M0IiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9ImJvbGQiPkpvaGFubiBNw7xsbGVyPC90ZXh0Pgo8dGV4dCB4PSIxNzAiIHk9IjM4NSIgZmlsbD0iIzY0NzQ4QiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0Ij5LbGltYXRlY2huaWtlciAtICs0OSAxODkgOTg3NjU0PC90ZXh0Pgo8dGV4dCB4PSIxNzAiIHk9IjQwNSIgZmlsbD0iIzY0NzQ4QiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0Ij5UZWxlZ3JhbTogQEpvaGFuS2xpbWFUZWNoPC90ZXh0Pgo8dGV4dCB4PSI1NTAiIHk9IjM2MCIgZmlsbD0iIzFFMjkzQiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iYm9sZCI+TWFyaWEgV2ViZXI8L3R5ZXQ+CjxjaXJjbGUgY3g9IjcyMCIgY3k9IjM3NSIgcj0iMTAiIGZpbGw9IiNFRjQ0NDQiLz4KPHR5ZXQgeD0iNTUwIiB5PSIzODUiIGZpbGw9IiM2NDc0OEIiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCI+U2FuaXTDpHJ0ZWNobmlrZXJpbiAtICsxNEUgMTkxMjM0NTY3PC90ZXh0Pgo8dGV4dCB4PSI1NTAiIHk9IjQwNSIgZmlsbD0iIzY0NzQ4QiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0Ij5UZWxlZ3JhbTogQE1hcmlhU2FuaXRhcnlUZWNoPC90ZXh0Pgo8L3N2Zz4K" alt="Technician Management Screenshot" loading="lazy">
+                        <div class="screenshot-info">
+                            <h4>👥 Techniker-Verwaltung</h4>
+                            <p>Umfassende deutsche Techniker-Profile mit Verfügbarkeitsstatus, Spezialisierungen und direkter Telegram-Integration für nahtlose Kommunikation.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="screenshot-item">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDgwMCA1MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRjhGQUZDIi8+CjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI4MDAiIGhlaWdodD0iODAiIGZpbGw9IiNGRkZGRkYiLz4KPHR5ZXQgeD0iNDAiIHk9IjUwIiBmaWxsPSIjOUM0Q0ZGIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj5UZWxlZ3JhbSBCb3QgS29uZmlndXJhdGlvbjwvdHl4dD4KPHJlY3QgeD0iNDAiIHk9IjEwMCIgd2lkdGg9IjcyMCIgaGVpZ2h0PSI2MCIgZmlsbD0iI0ZGRkZGRiIgc3Ryb2tlPSIjRTJFOEYwIiByeD0iOCIvPgo8cmVjdCB4PSI0MCIgeT0iMTgwIiB3aWR0aD0iNzIwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjRkZGRkZGIiBzdHJva2U9IiNFMkU4RjAiIHJ4PSI4Ii8+CjxyZWN0IHg9IjQwIiB5PSIyNjAiIHdpZHRoPSI3MjAiIGhlaWdodD0iNjAiIGZpbGw9IiNGRkZGRkYiIHN0cm9rZT0iI0UyRThGMCIgcng9IjgiLz4KPHJlY3QgeD0iNDAiIHk9IjM0MCIgd2lkdGg9IjcyMCIgaGVpZ2h0PSI2MCIgZmlsbD0iI0ZGRkZGRiIgc3Ryb2tlPSIjRTJFOEYwIiByeD0iOCIvPgo8cmVjdCB4PSI0MCIgeT0iNDIwIiB3aWR0aD0iMzQwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjMTBCOTgxIiByeD0iOCIvPgo8cmVjdCB4PSI0MjAiIHk9IjQyMCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSI1MCIgZmlsbD0iI0VGNDQ0NCIgcng9IjgiLz4KPHJlY3QgeD0iNjIwIiB5PSI0MjAiIHdpZHRoPSIxNDAiIGhlaWdodD0iNTAiIGZpbGw9IiMyNTYzRUIiIHJ4PSI4Ii8+CjxjaXJjbGUgY3g9IjcyMCIgY3k9IjEzMCIgcj0iMTUiIGZpbGw9IiMxMEI5ODEiLz4KPHR5ZXQgeD0iNzA1IiB5PSIxMzgiIGZpbGw9IiNGRkZGRkYiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuKIgjwvdHl4dD4KPHR5ZXQgeD0iNzAiIHk9IjEzNSIgZmlsbD0iIzFFMjkzQiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCI+Qm90IFRva2VuOjwvdHl4dD4KPHR5ZXQgeD0iMjAwIiB5PSIxMzUiIGZpbGw9IiM2NDc0OEIiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCI+NzU0OTg3MjU4OTpBQUhwcGtSSmZ5aCouKioqKioqKioqKioqKiozR1o8L3R5ZXQ+CjxjaXJjbGUgY3g9IjcyMCIgY3k9IjIxMCIgcj0iMTUiIGZpbGw9IiMxMEI5ODEiLz4KPHR5ZXQgeD0iNzA1IiB5PSIyMTgiIGZpbGw9IiNGRkZGRkYiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuKIgjwvdHl4dD4KPHR5ZXQgeD0iNzAiIHk9IjIxNSIgZmlsbD0iIzFFMjkzQiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCI+R29vZ2xlIE1hcHMgQVBJOjwvdHl4dD4KPHR5ZXQgeD0iMjUwIiB5PSIyMTUiIGZpbGw9IiM2NDc0OEIiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCI+QUl6YVN5QzQtKioqKioqKioqKipSZWlidGZnZF9rT2pucmdIPC90ZXh0Pgo8dGV4dCB4PSI3MCIgeT0iMjk1IiBmaWxsPSIjMUUyOTNCIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtd2VpZ2h0PSJib2xkIj5CZW5hY2hyaWNodGlndW5nZW46PC90eXh0Pgo8Y2lyY2xlIGN4PSI3MjAiIGN5PSIyOTAiIHI9IjE1IiBmaWxsPSIjMTBCOTgxIi8+CjxjaXJjbGUgY3g9IjcyMCIgY3k9IjM3MCIgcj0iMTUiIGZpbGw9IiMxMEI5ODEiLz4KPHR5ZXQgeD0iNzA1IiB5PSIyOTgiIGZpbGw9IiNGRkZGRkYiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk9OPC90ZXh0Pgo8dGV4dCB4PSI3MCIgeT0iMzc1IiBmaWxsPSIjMUUyOTNCIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtd2VpZ2h0PSJib2xkIj5Cb3QgU3RhdHVzOjwvdHl4dD4KPHR5ZXQgeD0iMTgwIiB5PSIzNzUiIGZpbGw9IiMxMEI5ODEiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiPkFrdGl2ICYgVmVyYnVuZGVuPC90ZXh0Pgo8dGV4dCB4PSIyMDAiIHk9IjQ0OCIgZmlsbD0iI0ZGRkZGRiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RWluc3RlbGx1bmdlbiBzcGVpY2hlcm48L3R5ZXQ+CjxjaXJjbGUgY3g9IjcwNSIgY3k9IjM3MCIgcj0iNSIgZmlsbD0iI0ZGRkZGRiIvPgo8dGV4dCB4PSI1MDAiIHk9IjQ0OCIgZmlsbD0iI0ZGRkZGRiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VGVzdCBzZW5kZW48L3R5ZXQ+CjxjaXJjbGUgY3g9IjY5MCIgY3k9IjQ0NSIgcj0iNSIgZmlsbD0iI0ZGRkZGRiIvPgo8dGV4dCB4PSI2OTAiIHk9IjQ0OCIgZmlsbD0iI0ZGRkZGRiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TG9nczwvdHl4dD4KPC9zdmc+Cg==" alt="Bot Settings Screenshot" loading="lazy">
+                        <div class="screenshot-info">
+                            <h4>🤖 Bot-Konfiguration</h4>
+                            <p>Erweiterte deutsche Telegram Bot Einstellungen mit Token-Management, API-Konfiguration und umfassenden Sicherheitsoptionen für optimale Performance.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="screenshot-item">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDgwMCA1MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRjhGQUZDIi8+CjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI4MDAiIGhlaWdodD0iODAiIGZpbGw9IiNGRkZGRkYiLz4KPHR5ZXQgeD0iNDAiIHk9IjUwIiBmaWxsPSIjRjU5RTBCIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj5SZWNobnVuZ3MtU3lzdGVtPC90ZXh0Pgo8cmVjdCB4PSI0MCIgeT0iMTAwIiB3aWR0aD0iNzIwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjRkZGRkZGIiBzdHJva2U9IiNFMkU4RjAiIHJ4PSI4Ii8+CjxyZWN0IHg9IjQwIiB5PSIxNjAiIHdpZHRoPSI3MjAiIGhlaWdodD0iNTAiIGZpbGw9IiNGRkZGRkYiIHN0cm9rZT0iI0UyRThGMCIgcng9IjgiLz4KPHJlY3QgeD0iNDAiIHk9IjIyMCIgd2lkdGg9IjcyMCIgaGVpZ2h0PSI1MCIgZmlsbD0iI0ZGRkZGRiIgc3Ryb2tlPSIjRTJFOEYwIiByeD0iOCIvPgo8cmVjdCB4PSI0MCIgeT0iMjgwIiB3aWR0aD0iNzIwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjRkZGRkZGIiBzdHJva2U9IiNFMkU4RjAiIHJ4PSI4Ii8+CjxyZWN0IHg9IjQwIiB5PSIzNDAiIHdpZHRoPSI3MjAiIGhlaWdodD0iNTAiIGZpbGw9IiNGRkZGRkYiIHN0cm9rZT0iI0UyRThGMCIgcng9IjgiLz4KPHJlY3QgeD0iNDAiIHk9IjQwMCIgd2lkdGg9IjcyMCIgaGVpZ2h0PSI1MCIgZmlsbD0iI0ZGRkZGRiIgc3Ryb2tlPSIjRTJFOEYwIiByeD0iOCIvPgo8dGV4dCB4PSI3MCIgeT0iMTMwIiBmaWxsPSIjMUUyOTNCIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIj5SRS0yMDI1LTAwMDEgLSBNYXggTXVzdGVybWFubiAtIDQ1MiwwMOKCrCAtIDE1LjAxLjIwMjU8L3R5ZXQ+CjxjaXJjbGUgY3g9IjcwMCIgY3k9IjEyNSIgcj0iOCIgZmlsbD0iIzEwQjk4MSIvPgo8Y2lyY2xlIGN4PSI3MjAiIGN5PSIxMjUiIHI9IjgiIGZpbGw9IiMyNTYzRUIiLz4KPHR5ZXQgeD0iNzAiIHk9IjE5MCIgZmlsbD0iIzFFMjkzQiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCI+UkUtMjAyNS0wMDAyIC0gQW5uYSBTY2htaWR0IC0gNzg5LDUw4oKsIC0gMjAuMDEuMjAyNTwvdHl4dD4KPGNpcmNsZSBjeD0iNzAwIiBjeT0iMTg1IiByPSI4IiBmaWxsPSIjMTBCOTgxIi8+CjxjaXJjbGUgY3g9IjcyMCIgY3k9IjE4NSIgcj0iOCIgZmlsbD0iIzI1NjNFQiIvPgo8dGV4dCB4PSI3MCIgeT0iMjUwIiBmaWxsPSIjMUUyOTNCIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIj5SRS0yMDI1LTAwMDMgLSBKb2hhbm4gTcO8bGxlciAtIDU2NywwMOKCrCAtIDI1LjAxLjIwMjU8L3R5ZXQ+CjxjaXJjbGUgY3g9IjcwMCIgY3k9IjI0NSIgcj0iOCIgZmlsbD0iI0Y1OUUwQiIvPgo8Y2lyY2xlIGN4PSI3MjAiIGN5PSIyNDUiIHI9IjgiIGZpbGw9IiMyNTYzRUIiLz4KPHR5ZXQgeD0iNzAiIHk9IjMxMCIgZmlsbD0iIzFFMjkzQiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCI+UkUtMjAyNS0wMDA0IC0gTWFyaWEgV2ViZXIgLSA2NzgsNzXigqwgLSAyOC4wMS4yMDI1PC90ZXh0Pgo8Y2lyY2xlIGN4PSI3MDAiIGN5PSIzMDUiIHI9IjgiIGZpbGw9IiMxMEI5ODEiLz4KPGNpcmNsZSBjeD0iNzIwIiBjeT0iMzA1IiByPSI4IiBmaWxsPSIjMjU2M0VCIi8+CjxjaXJjbGUgY3g9IjcwMCIgY3k9IjM2NSIgcj0iOCIgZmlsbD0iI0VGNDQ0NCIvPgo8Y2lyY2xlIGN4PSI3MjAiIGN5PSIzNjUiIHI9IjgiIGZpbGw9IiMyNTYzRUIiLz4KPHR5ZXQgeD0iNzAiIHk9IjM3MCIgZmlsbD0iIzFFMjkzQiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCI+UkUtMjAyNS0wMDA1IC0gVGVjaC1Mb3N1bmdlbiBHbWJIIC0gMS4yMzQsNTDigqwgLSAwMS4wMi4yMDI1PC90ZXh0Pgo8dGV4dCB4PSI3MCIgeT0iNDMwIiBmaWxsPSIjMUUyOTNCIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIj5SRS0yMDI1LTAwMDYgLSBIZWF0aW5nLVByb3MgQUcgLSA5ODksNTDigqwgLSAwMy4wMi4yMDI1PC90ZXh0Pgo8Y2lyY2xlIGN4PSI3MDAiIGN5PSI0MjUiIHI9IjgiIGZpbGw9IiMxMEI5ODEiLz4KPGNpcmNsZSBjeD0iNzIwIiBjeT0iNDI1IiByPSI4IiBmaWxsPSIjMjU2M0VCIi8+Cjwvc3ZnPgo=" alt="Invoice System Screenshot" loading="lazy">
+                        <div class="screenshot-info">
+                            <h4>🧾 Rechnungs-System</h4>
+                            <p>Professionelle deutsche Rechnungsverwaltung mit automatischer PDF-Generierung, MwSt-Berechnung und GoBD-konformen Export-Funktionen.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="screenshot-item">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDgwMCA1MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRjhGQUZDIi8+CjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI4MDAiIGhlaWdodD0iODAiIGZpbGw9IiNGRkZGRkYiLz4KPHR5ZXQgeD0iNDAiIHk9IjUwIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj5CZXJpY2h0ZSAmIEFuYWx5dGljczwvdHl4dD4KPHJlY3QgeD0iNDAiIHk9IjEwMCIgd2lkdGg9IjM0MCIgaGVpZ2h0PSIxODAiIGZpbGw9IiNGRkZGRkYiIHN0cm9rZT0iI0UyRThGMCIgcng9IjEyIi8+CjxyZWN0IHg9IjQyMCIgeT0iMTAwIiB3aWR0aD0iMzQwIiBoZWlnaHQ9IjE4MCIgZmlsbD0iI0ZGRkZGRiIgc3Ryb2tlPSIjRTJFOEYwIiByeD0iMTIiLz4KPHJlY3QgeD0iNDAiIHk9IjMwMCIgd2lkdGg9IjcyMCIgaGVpZ2h0PSIxODAiIGZpbGw9IiNGRkZGRkYiIHN0cm9rZT0iI0UyRThGMCIgcng9IjEyIi8+Cjxwb2x5bGluZSBwb2ludHM9IjcwLDI0MCA3MCwyNjAgMTIwLDI0MCAyMDAsMjIwIDI2MCwyMTAgMzIwLDE5MCAzNTAsMTgwIiBzdHJva2U9IiMyNTYzRUIiIHN0cm9rZS13aWR0aD0iNCIgZmlsbD0ibm9uZSIvPgo8Y2lyY2xlIGN4PSI3MCIgY3k9IjI0MCIgcj0iNiIgZmlsbD0iIzI1NjNFQiIvPgo8Y2lyY2xlIGN4PSIxMjAiIGN5PSIyNDAiIHI9IjYiIGZpbGw9IiMyNTYzRUIiLz4KPGNpcmNsZSBjeD0iMjAwIiBjeT0iMjIwIiByPSI2IiBmaWxsPSIjMjU2M0VCIi8+CjxjaXJjbGUgY3g9IjI2MCIgY3k9IjIxMCIgcj0iNiIgZmlsbD0iIzI1NjNFQiIvPgo8Y2lyY2xlIGN4PSIzMjAiIGN5PSIxOTAiIHI9IjYiIGZpbGw9IiMyNTYzRUIiLz4KPGNpcmNsZSBjeD0iMzUwIiBjeT0iMTgwIiByPSI2IiBmaWxsPSIjMjU2M0VCIi8+CjxjaXJjbGUgY3g9IjU5MCIgY3k9IjE4MCIgcj0iNDAiIGZpbGw9IiMyNTYzRUIiLz4KPGNpcmNsZSBjeD0iNTkwIiBjeT0iMTgwIiByPSIzNSIgZmlsbD0iI0ZGRkZGRiIvPgo8Y2lyY2xlIGN4PSI1OTAiIGN5PSIxODAiIHI9IjMwIiBmaWxsPSIjMjU2M0VCIi8+CjxjaXJjbGUgY3g9IjUzMCIgY3k9IjIyMCIgcj0iMjUiIGZpbGw9IiMxMEI5ODEiLz4KPGNpcmNsZSBjeD0iNjUwIiBjeT0iMjEwIiByPSIyMCIgZmlsbD0iI0Y1OUUwQiIvPgo8Y2lyY2xlIGN4PSI2ODAiIGN5PSIyNDAiIHI9IjE1IiBmaWxsPSIjRUY0NDQ0Ii8+CjxsaW5lIHgxPSI3MCIgeTE9IjM1MCIgeDI9IjczMCIgeTI9IjM1MCIgc3Ryb2tlPSIjRTJFOEYwIiBzdHJva2Utd2lkdGg9IjIiLz4KPGxpbmUgeDE9IjcwIiB5MT0iMzgwIiB4Mj0iNzMwIiB5Mj0iMzgwIiBzdHJva2U9IiNFMkU4RjAiIHN0cm9rZS13aWR0aD0iMiIvPgo8bGluZSB4MT0iNzAiIHkxPSI0MTAiIHgyPSI3MzAiIHkyPSI0MTAiIHN0cm9rZT0iI0UyRThGMCIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxsaW5lIHgxPSI3MCIgeTE9IjQ0MCIgeDI9IjczMCIgeTI9IjQ0MCIgc3Ryb2tlPSIjRTJFOEYwIiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iNzAiIHk9IjM0NSIgd2lkdGg9IjU0MCIgaGVpZ2h0PSIxMCIgZmlsbD0iIzI1NjNFQiIgcng9IjUiLz4KPHJlY3QgeD0iNzAiIHk9IjM3NSIgd2lkdGg9IjM4MCIgaGVpZ2h0PSIxMCIgZmlsbD0iIzEwQjk4MSIgcng9IjUiLz4KPHJlY3QgeD0iNzAiIHk9IjQwNSIgd2lkdGg9IjQ2MCIgaGVpZ2h0PSIxMCIgZmlsbD0iI0Y1OUUwQiIgcng9IjUiLz4KPHJlY3QgeD0iNzAiIHk9IjQzNSIgd2lkdGg9IjMyMCIgaGVpZ2h0PSIxMCIgZmlsbD0iI0VGNDQ0NCIgcng9IjUiLz4KPHR5ZXQgeD0iMjEwIiB5PSIxMzUiIGZpbGw9IiMxRTI5M0IiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk1vbmF0c3Vtc2F0eiAoNDUuNjc4w6ApPC90ZXh0Pgo8dGV4dCB4PSI1OTAiIHk9IjEzNSIgZmlsbD0iIzFFMjkzQiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VGVjaG5pa2VyLUxlaXN0dW5nPC90eXh0Pgo8dGV4dCB4PSI0MDAiIHk9IjMzNSIgZmlsbD0iIzFFMjkzQiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RXhwb3J0LU9wdGlvbmVuOjwvdHl4dD4KPHR5ZXQgeD0iNjQwIiB5PSIzNTUiIGZpbGw9IiNGRkZGRkYiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiPlBERjwvdHl4dD4KPHR5ZXQgeD0iNDcwIiB5PSIzODUiIGZpbGw9IiNGRkZGRkYiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiPkV4Y2VsPC90ZXh0Pgo8dGV4dCB4PSI1NjAiIHk9IjQxNSIgZmlsbD0iI0ZGRkZGRiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCI+Q1NWPC90ZXh0Pgo8dGV4dCB4PSI0MjAiIHk9IjQ0NSIgZmlsbD0iI0ZGRkZGRiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCI+REFURU4gRXhwb3J0PC90ZXh0Pgo8L3N2Zz4K" alt="Reports & Analytics Screenshot" loading="lazy">
+                        <div class="screenshot-info">
+                            <h4>📈 Berichte & Analytics</h4>
+                            <p>Umfassende deutsche Datenauswertung mit Umsatzgrafiken, Export-Funktionen und detaillierten Leistungsberichten für optimale Geschäftsentscheidungen.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="section pricing">
+            <div class="container">
+                <h2 class="section-title">Transparent Preise - Ohne versteckte Kosten</h2>
+                <p class="section-subtitle">Wählen Sie das passende Paket für Ihr Unternehmen. Beide Optionen enthalten alle Features und deutschen Support.</p>
+                
+                <!-- Price Comparison -->
+                <div style="background: var(--bg-white); padding: 2rem; border-radius: 15px; margin: 2rem 0; text-align: center; border: 2px solid var(--primary-color);">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">💡 Unser Empfehlung</h3>
+                    <p style="font-size: 1.1rem; color: var(--text-dark);">Die <strong>Lebenslange Lizenz</strong> amortisiert sich bereits nach <strong>3,3 Jahren</strong> gegenüber der Jahres-Lizenz und beinhaltet alle zukünftigen Updates ohne weitere Kosten.</p>
+                </div>
+                
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>Jahres-Lizenz</h3>
+                        <div class="price">450€<span class="price-period">/Jahr</span></div>
+                        <p style="color: var(--text-light); margin-bottom: 1rem;">Ideal für Test und kleinere Betriebe</p>
+                        <ul class="features-list">
+                            <li>Vollständige Software-Lizenz</li>
+                            <li>Telegram Bot Integration</li>
+                            <li>Multi-Language Support (DE/EN/AR)</li>
+                            <li>Unbegrenzte Techniker & Aufgaben</li>
+                            <li>Alle Export-Funktionen (PDF/Excel/CSV)</li>
+                            <li>DSGVO-konforme Datenhaltung</li>
+                            <li>Deutsche Server & Hosting</li>
+                            <li>E-Mail Support (Werktags 9-17h)</li>
+                            <li>Updates für 12 Monate inklusive</li>
+                            <li>GoBD-konforme Archivierung</li>
+                        </ul>
+                        <button class="btn btn-telegram" onclick="buyPackage('yearly')">
+                            📱 Jetzt über Telegram kaufen
+                        </button>
+                        <p style="font-size: 0.8rem; margin-top: 1rem; color: var(--text-light);">
+                            ⚡ Sofort verfügbar • 🔒 Sichere Zahlung • 🔄 14 Tage Geld-zurück
+                        </p>
+                    </div>
+                    
+                    <div class="pricing-card popular">
+                        <div class="popular-badge">🏆 Am beliebtesten</div>
+                        <h3>Lebenslange Lizenz</h3>
+                        <div class="price">1.500€<span class="price-period">einmalig</span></div>
+                        <p style="color: var(--success-color); margin-bottom: 1rem; font-weight: 600;">Sparen Sie 67% gegenüber 5 Jahren Jahres-Lizenz!</p>
+                        <ul class="features-list">
+                            <li>🌟 Lebenslange Software-Lizenz</li>
+                            <li>🤖 Telegram Bot Integration</li>
+                            <li>🌍 Multi-Language Support (DE/EN/AR)</li>
+                            <li>♾️ Unbegrenzte Techniker & Aufgaben</li>
+                            <li>📊 Alle Export-Funktionen (PDF/Excel/CSV)</li>
+                            <li>🔒 DSGVO-konforme Datenhaltung</li>
+                            <li>🇩🇪 Deutsche Server & Hosting</li>
+                            <li>🚀 Prioritäts-Support (Antwort < 2h)</li>
+                            <li>🔄 Lebenslange Updates inklusive</li>
+                            <li>🎯 Individuelle Anpassungen möglich</li>
+                            <li>📞 Telefon-Support verfügbar</li>
+                            <li>🏢 White-Label Option</li>
+                        </ul>
+                        <button class="btn btn-telegram" onclick="buyPackage('lifetime')">
+                            📱 Jetzt über Telegram kaufen
+                        </button>
+                        <p style="font-size: 0.8rem; margin-top: 1rem; color: var(--text-light);">
+                            ⚡ Sofort verfügbar • 🔒 Sichere Zahlung • 🔄 30 Tage Geld-zurück
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Additional Information -->
+                <div style="margin-top: 3rem; text-align: center;">
+                    <div style="background: var(--bg-light); padding: 2rem; border-radius: 15px;">
+                        <h4 style="color: var(--text-dark); margin-bottom: 1rem;">🛡️ Ihre Sicherheit ist garantiert</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                            <div>💳 <strong>Sichere Zahlung</strong><br>Über vertrauenswürdigen Telegram Bot</div>
+                            <div>🔄 <strong>Geld-zurück-Garantie</strong><br>14/30 Tage ohne Fragen</div>
+                            <div>📞 <strong>Deutscher Support</strong><br>Mo-Fr 9:00-18:00 Uhr</div>
+                            <div>⚡ <strong>Sofortige Bereitstellung</strong><br>Nach erfolgreicher Zahlung</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">Kontakt & Demo</h2>
+                <p class="section-subtitle">Testen Sie das System kostenfrei oder kontaktieren Sie unser deutsches Support-Team</p>
+                
+                <div class="cta-buttons">
+                    <a href="https://techniker-task-manager.replit.app" class="btn btn-primary" target="_blank">🚀 Kostenlose Live Demo starten</a>
+                    <a href="mailto:demo@techniker-manager.de" class="btn btn-outline">📧 Persönliche Beratung anfordern</a>
+                </div>
+                
+                <div style="margin-top: 3rem;">
+                    <div style="background: var(--bg-light); padding: 2rem; border-radius: 15px; text-align: center;">
+                        <h4 style="color: var(--text-dark); margin-bottom: 1rem;">📞 Direkter Kontakt</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                            <div>
+                                <h5 style="color: var(--primary-color); margin-bottom: 0.5rem;">Vertrieb & Beratung</h5>
+                                <p>📞 +49 (0) 30 12345678<br>📧 vertrieb@techniker-manager.de</p>
+                            </div>
+                            <div>
+                                <h5 style="color: var(--primary-color); margin-bottom: 0.5rem;">Technischer Support</h5>
+                                <p>📞 +49 (0) 30 87654321<br>📧 support@techniker-manager.de</p>
+                            </div>
+                            <div>
+                                <h5 style="color: var(--primary-color); margin-bottom: 0.5rem;">Unternehmen</h5>
+                                <p>TechManager Solutions GmbH<br>Musterstraße 123, 10115 Berlin</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>Produkt</h4>
+                        <p>Revolutionäre deutsche Telegram Bot Lösung für modernes Techniker-Management mit umfassender Automatisierung und DSGVO-Konformität.</p>
+                        <p style="margin-top: 1rem; font-size: 0.9rem;">Entwickelt in Deutschland 🇩🇪</p>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Features</h4>
+                        <a href="#features">Aufgaben-Management</a><br>
+                        <a href="#features">Techniker-Verwaltung</a><br>
+                        <a href="#features">Rechnungs-System</a><br>
+                        <a href="#features">Multi-Language Support</a><br>
+                        <a href="#features">Telegram Bot Integration</a><br>
+                        <a href="#features">DSGVO-Konformität</a>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Technologie</h4>
+                        <a href="#technical">React + TypeScript Frontend</a><br>
+                        <a href="#technical">Node.js + Express Backend</a><br>
+                        <a href="#technical">PostgreSQL Datenbank</a><br>
+                        <a href="#technical">Telegram Bot API</a><br>
+                        <a href="#technical">Deutsche Cloud-Server</a><br>
+                        <a href="#technical">SSL-Verschlüsselung</a>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Kontakt</h4>
+                        <p>📧 info@techniker-manager.de</p>
+                        <p>📞 +49 (0) 30 12345678</p>
+                        <p>🌐 www.techniker-task-manager.de</p>
+                        <p>📍 Berlin, Deutschland</p>
+                        <p style="margin-top: 1rem;">
+                            <a href="#telegram" style="color: var(--telegram-color);">📱 @TechnikerTaskManager_Bot</a>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2025 TechManager Solutions GmbH. Alle Rechte vorbehalten. | 
+                       <a href="#datenschutz">Datenschutz</a> | 
+                       <a href="#impressum">Impressum</a> | 
+                       <a href="#agb">AGB</a> |
+                       <a href="#widerruf">Widerrufsrecht</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2 style="margin-bottom: 1rem; color: var(--text-dark);">🔐 Kunden-Login</h2>
+            <p style="color: var(--text-light); margin-bottom: 2rem;">Melden Sie sich mit Ihren Zugangsdaten an, um auf Downloads und Support zuzugreifen.</p>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">📧 E-Mail-Adresse:</label>
+                    <input type="email" id="email" name="email" placeholder="ihre@email.de" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">🔑 Passwort:</label>
+                    <input type="password" id="password" name="password" placeholder="Ihr Passwort" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Anmelden</button>
+                <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">
+                    Noch kein Kunde? <a href="#pricing" style="color: var(--primary-color);">Jetzt kaufen</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Customer Portal -->
+    <div id="customerPortal" class="customer-portal">
+        <div class="portal-header">
+            <div class="container">
+                <div class="portal-nav">
+                    <div class="welcome-text">
+                        🎉 Willkommen zurück, <span id="customerName">Kunde</span>!
+                    </div>
+                    <button class="logout-btn" onclick="logout()">🚪 Abmelden</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="portal-content">
+                <div class="portal-card">
+                    <h3>📥 Download-Bereich</h3>
+                    <p>Laden Sie die neueste Version der Software herunter:</p>
+                    <button class="download-btn" onclick="downloadSoftware()">
+                        📥 Software herunterladen (v2.1.0)
+                    </button>
+                    <div style="background: var(--bg-light); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                        <p style="font-size: 0.9rem; color: var(--text-dark); margin: 0;">
+                            <strong>Letzte Version:</strong> v2.1.0 (26. Juni 2025)<br>
+                            <strong>Dateigröße:</strong> ~15 MB<br>
+                            <strong>Format:</strong> ZIP-Archiv mit Installationsanleitung
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="portal-card">
+                    <h3>🎧 Technischer Support</h3>
+                    <p>Benötigen Sie Hilfe oder haben Fragen? Unser deutsches Support-Team hilft Ihnen gerne:</p>
+                    <button class="support-btn" onclick="contactSupport()">
+                        📱 Telegram Support kontaktieren
+                    </button>
+                    <div style="background: var(--bg-light); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                        <p style="font-size: 0.9rem; color: var(--text-dark); margin: 0;">
+                            <strong>Antwortzeit:</strong> Normalerweise < 2 Stunden<br>
+                            <strong>Verfügbar:</strong> Mo-Fr 9:00-18:00 Uhr (MEZ)<br>
+                            <strong>Sprachen:</strong> Deutsch, English
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="portal-card">
+                    <h3>💎 Ihr Abonnement</h3>
+                    <div id="subscriptionInfo">
+                        <p><strong>Plan:</strong> <span id="planType">Lebenslange Lizenz</span></p>
+                        <p><strong>Status:</strong> <span style="color: var(--success-color);">✅ Aktiv</span></p>
+                        <p><strong>Gekauft am:</strong> <span id="purchaseDate">15. Januar 2025</span></p>
+                        <p><strong>Updates:</strong> <span style="color: var(--success-color);">Lebenslang inklusive</span></p>
+                        <p><strong>Support:</strong> <span style="color: var(--success-color);">Prioritäts-Support</span></p>
+                    </div>
+                </div>
+                
+                <div class="portal-card">
+                    <h3>🔄 Updates & Changelog</h3>
+                    <div style="max-height: 300px; overflow-y: auto;">
+                        <div style="border-left: 4px solid var(--success-color); padding-left: 1rem; margin-bottom: 1.5rem; background: #f0fdf4; padding: 1rem; border-radius: 8px;">
+                            <strong style="color: var(--success-color);">v2.1.0</strong> - 26. Juni 2025 🆕
+                            <ul style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-dark);">
+                                <li>✅ Verbesserte Telegram Bot Performance</li>
+                                <li>✅ Neue Export-Funktionen für deutsche Buchhaltung</li>
+                                <li>✅ DSGVO-Compliance Updates</li>
+                                <li>🔧 Deutsche Sprachoptimierungen</li>
+                                <li>🔧 Bugfixes und Stabilität</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="border-left: 4px solid var(--primary-color); padding-left: 1rem; margin-bottom: 1.5rem;">
+                            <strong style="color: var(--primary-color);">v2.0.5</strong> - 20. Juni 2025
+                            <ul style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">
+                                <li>✅ Multi-Language Synchronisation</li>
+                                <li>✅ Erweiterte Sicherheitsfeatures</li>
+                                <li>✅ Neue deutsche Rechtsvorlagen</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="border-left: 4px solid var(--border-color); padding-left: 1rem;">
+                            <strong style="color: var(--text-light);">v2.0.0</strong> - 15. Juni 2025
+                            <ul style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">
+                                <li>🎉 Major Release mit deutscher Lokalisierung</li>
+                                <li>✅ GoBD-konforme Archivierung</li>
+                                <li>✅ Deutsche Server-Migration</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="scripts.js"></script>
+    
+    <!-- Additional inline JavaScript for initialization -->
+    <script>
+        // Hide loading screen after page load
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').style.display = 'none';
+            }, 1000);
+        });
+        
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        }
+        
+        // Enhanced mobile responsiveness
+        function updateMobileLayout() {
+            const navLinks = document.querySelector('.nav-links');
+            const mobileBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (window.innerWidth <= 768) {
+                navLinks.style.display = 'none';
+                mobileBtn.style.display = 'block';
+            } else {
+                navLinks.style.display = 'flex';
+                mobileBtn.style.display = 'none';
+            }
+        }
+        
+        window.addEventListener('resize', updateMobileLayout);
+        updateMobileLayout();
+        
+        // Google Analytics (placeholder)
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+</body>
+</html>

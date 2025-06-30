@@ -1,0 +1,96 @@
+I want to modify the existing "Send to Telegram" button located in:
+
+    Task table
+
+    Task creation page
+
+    Task card
+
+This button should be replaced with two independent buttons with the following specifications:
+First Button: "Send General Data"
+
+    Functionality:
+
+        Sends basic task information to a technician/group of technicians (or specific user)
+
+        Data to include:
+
+            TASK ID
+
+            TASK TITLE
+
+            DESCRIPTION
+
+            DATE
+
+            START TIME
+
+            END TIME
+
+    Features:
+
+        Sends a separate Telegram message containing only this data
+
+        Can be reused multiple times for the same task without restrictions (e.g., when editing)
+
+Second Button: "Send Client Data"
+
+    Functionality:
+
+        Sends confidential information only to the assigned technician (manual process after task acceptance)
+
+        The acceptance method will be programmed through message replies, with system notifications sent to us
+
+        Data to include:
+
+            TASK ID (for reference)
+
+            CLIENT NAME
+
+            CLIENT PHONE
+
+            LOCATION MAP URL
+
+    Features:
+
+        Can be reused multiple times for the same task without restrictions
+
+        Sends data only to the assigned technician (selected from dedicated list)
+
+        Includes security warning: "This is confidential data - do not share with others"
+
+        Logs each send event in the database (to prevent misuse)
+
+Implementation Requirements:
+
+    Both buttons should appear in:
+
+        Task tables
+
+        Task creation pages
+
+        Task cards
+
+    Technical specifications:
+
+        Maintain existing TASK ID linking functionality
+
+        New buttons should use separate callback queries
+
+        Client data button should verify technician assignment before sending
+
+        Implement reply-based acceptance system with admin notifications
+
+    Security:
+
+        Client data should only be sent via private messages
+
+        All sends should be logged with timestamp and user info
+
+    User Interface:
+
+        Clear visual distinction between buttons (colors/icons)
+
+        Appropriate confirmation messages after sending
+
+        Warning messages for client data sends

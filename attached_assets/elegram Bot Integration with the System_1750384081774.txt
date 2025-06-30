@@ -1,0 +1,106 @@
+✅ Workflow: Telegram Bot Integration with the System
+🔌 Connect Telegram Bot:
+Bot Token: Enter the bot token in the system settings to establish a connection.
+
+Bot Link: A direct link is provided for technicians to join and interact with the bot.
+
+👤 First-Time Technician Login:
+When a technician accesses the bot for the first time:
+
+Their data is automatically fetched (Name, Telegram ID, Username, Profile Link).
+
+This data is saved to the system’s technician database and shown in the technician table and cards.
+
+The system allows unlimited technician registrations.
+
+Duplicate registrations are prevented via Telegram ID.
+
+📩 System Notification:
+When a new technician joins:
+
+The system shows an instant notification.
+
+A button is included in the notification to review/edit the technician’s data, or keep it as default.
+
+🛠️ Creating a New Task:
+A task is created with all required details.
+
+A registered technician is selected and assigned to the task.
+
+The “Send Task Info” button is pressed to send the task details to the technician via Telegram.
+
+📩 Technician Notification (via Bot):
+When the task is sent, the technician receives a Telegram message with:
+
+Basic task details (no client info).
+
+Two interactive buttons:
+
+✅ Accept Task
+
+❌ Reject Task
+
+🔄 Technician Response:
+If Rejected:
+
+The system notifies the admin immediately.
+
+Admin can manually reassign the task to another technician.
+
+If Accepted:
+
+The system sends a notification to the admin.
+
+Admin can press “Send Client Info” to share sensitive client data with the technician.
+
+The technician receives the client data along with a “Mark as Completed” button.
+
+✅ Completing a Task:
+Once the task is done, the technician clicks “Mark as Completed” from the bot.
+
+The system notifies the admin and updates the task card status.
+
+The admin can manually update task status or resend the task to the same or another technician.
+
+🧾 Invoice Generation:
+Admin creates an invoice based on the completed task.
+
+Invoice is manually sent to the technician via the bot using a dedicated button.
+
+Invoice is saved with the status “Pending” in the system.
+
+The status can be updated to “Paid”, which is reflected on the invoice card.
+
+📊 Reports & Logging:
+All actions and events are automatically logged in a detailed report, including:
+
+Task data.
+
+Technician responses.
+
+Invoice details.
+
+Task status history.
+
+🔔 System Notifications (Text + Sound):
+Task created.
+
+Task sent.
+
+Task “#ID” accepted by technician (name).
+
+Task “#ID” rejected by technician (name).
+
+Task “#ID” marked as completed.
+
+New technician added (name).
+
+Technician, task, report, or invoice deleted.
+
+Client info sent for task “#ID” (Client name).
+
+Invoice “#ID” created.
+
+Invoice “#ID” sent.
+
+Status changed for task or invoice.

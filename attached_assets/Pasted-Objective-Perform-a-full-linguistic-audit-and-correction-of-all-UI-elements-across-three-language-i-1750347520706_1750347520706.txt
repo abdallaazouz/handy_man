@@ -1,0 +1,102 @@
+Objective:
+Perform a full linguistic audit and correction of all UI elements across three language interfaces (Arabic/English/German) with special focus on German localization accuracy.
+
+Scope of Work:
+
+    Full Content Review:
+
+        Verify 100% of German translations across:
+
+            Navigation menus
+
+            Buttons (including new Telegram buttons)
+
+            Tables (tasks, reports, data grids)
+
+            Form fields
+
+            Error messages
+
+            Notifications
+
+            Documentation/tooltips
+
+    German-Specific Requirements:
+
+        Ensure technical terms follow DIN standards
+
+        Formal "Sie" form for all user-facing text
+
+        Consistent noun capitalization
+
+        Correct gender/article usage
+
+        Accurate compound word construction
+
+    Consistency Checks:
+
+        Cross-validate translations against:
+
+            Industry-standard Glossaries
+
+            Previously approved translations
+
+            Microsoft Language Portal recommendations
+
+        Maintain consistent terminology for:
+
+            "Task" = "Aufgabe" (not "Auftrag")
+
+            "Client" = "Kunde" (not "Klient")
+
+            "Send" = "Senden" (uniform across all buttons)
+
+    Technical Verification:
+
+        Confirm all dynamic elements (e.g., {task_id}) work in German UI
+
+        Check datetime/number formatting (DD.MM.YYYY)
+
+        Validate text expansion/contraction in UI containers
+
+        Test RTL/LTR rendering where applicable
+
+    QA Process:
+
+        Perform 3-tier verification:
+
+            Automated: Use Lokalise/Phrase checks
+
+            Manual: Native German speaker review
+
+            Functional: Test all workflows in German UI
+
+Deliverables:
+
+    Complete translation correction log
+
+    Updated JSON/localization files with:
+
+        All missing translations added
+
+        Inconsistent terms standardized
+
+        Grammatical errors corrected
+
+    UI screenshots confirming fixes
+
+Example Correction (Before → After):
+"Send Client Data" → "Kundendaten senden"
+"Task Table" → "Aufgabenliste"
+"Start Time" → "Startzeit" (not "Beginn Zeit")
+
+Timeframe:
+Complete within 48 hours with daily progress reports.
+
+Notes:
+
+    Prioritize critical path elements (navigation, forms, alerts)
+
+    Flag any culturally sensitive content requiring adaptation
+
+    Verify all technical strings (e.g., callback_data) remain untranslated

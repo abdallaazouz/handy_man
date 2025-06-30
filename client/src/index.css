@@ -1,0 +1,363 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Responsive table improvements */
+.table-responsive {
+  @apply overflow-x-auto;
+}
+
+.table-responsive table {
+  @apply min-w-full;
+}
+
+/* Ensure proper text wrapping in table cells */
+.table-cell-responsive {
+  @apply break-words overflow-hidden;
+}
+
+/* Mobile-first responsive tables */
+@media (max-width: 768px) {
+  .table-responsive table {
+    font-size: 0.875rem;
+  }
+  
+  .table-responsive th,
+  .table-responsive td {
+    padding: 0.5rem 0.25rem;
+  }
+}
+
+/* Text truncation utilities */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Ensure table cells wrap content properly */
+table.table-fixed {
+  table-layout: fixed;
+  width: 100%;
+}
+
+td, th {
+  word-wrap: break-word;
+  vertical-align: top;
+  overflow: hidden;
+}
+
+/* Better spacing for table content */
+.table-cell-content {
+  padding: 1rem;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+:root {
+  --background: hsl(222, 15%, 13%);
+  --foreground: hsl(210, 10%, 92%);
+  --card: hsl(222, 15%, 16%);
+  --card-foreground: hsl(210, 10%, 92%);
+  --popover: hsl(222, 15%, 16%);
+  --popover-foreground: hsl(210, 10%, 92%);
+  --primary: hsl(217, 91%, 60%);
+  --primary-foreground: hsl(0, 0%, 98%);
+  --secondary: hsl(222, 15%, 20%);
+  --secondary-foreground: hsl(210, 10%, 92%);
+  --muted: hsl(222, 15%, 20%);
+  --muted-foreground: hsl(215, 8%, 65%);
+  --accent: hsl(222, 15%, 20%);
+  --accent-foreground: hsl(210, 10%, 92%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --border: hsl(222, 15%, 24%);
+  --input: hsl(222, 15%, 18%);
+  --ring: hsl(217, 91%, 60%);
+  --radius: 0.5rem;
+  --sidebar-background: hsl(222, 15%, 10%);
+  --sidebar-foreground: hsl(210, 10%, 92%);
+  --sidebar-primary: hsl(217, 91%, 60%);
+  --sidebar-primary-foreground: hsl(0, 0%, 98%);
+  --sidebar-accent: hsl(222, 15%, 16%);
+  --sidebar-accent-foreground: hsl(210, 10%, 92%);
+  --sidebar-border: hsl(222, 15%, 18%);
+  --sidebar-ring: hsl(217, 91%, 60%);
+}
+
+/* Replit-style glassmorphism card backgrounds */
+.gradient-blue-purple {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.gradient-emerald-cyan {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.gradient-rose-amber {
+  background: linear-gradient(135deg, rgba(244, 63, 94, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Refined shadow and interaction styles */
+.card-shadow {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.card-shadow-hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25), 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Task type icon colors */
+.task-icon-electric {
+  color: #fbbf24;
+}
+
+.task-icon-plumbing {
+  color: #3b82f6;
+}
+
+.task-icon-general {
+  color: #10b981;
+}
+
+.task-icon-maintenance {
+  color: #8b5cf6;
+}
+
+/* Glassmorphism effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Status indicator colors */
+.status-active {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.status-inactive {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+/* Modern card shadows */
+.card-shadow {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.card-shadow-hover {
+  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.light {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --primary: hsl(239, 84%, 67%);
+  --primary-foreground: hsl(0, 0%, 98%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --ring: hsl(20, 14.3%, 4.1%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Custom animations */
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes notification-ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.notification-dot {
+  animation: notification-ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.glass-effect {
+  backdrop-filter: blur(12px);
+  background: rgba(34, 41, 57, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, hsl(217, 91%, 60%) 0%, hsl(230, 91%, 60%) 100%);
+}
+
+/* Status badge styles */
+.status-pending {
+  @apply bg-yellow-100 border-yellow-300 text-yellow-800;
+}
+
+.status-sent {
+  @apply bg-blue-100 border-blue-300 text-blue-800;
+}
+
+.status-accepted {
+  @apply bg-green-100 border-green-300 text-green-800;
+}
+
+.status-rejected {
+  @apply bg-red-100 border-red-300 text-red-800;
+}
+
+.status-in_progress {
+  @apply bg-purple-100 border-purple-300 text-purple-800;
+}
+
+.status-completed {
+  @apply bg-emerald-100 border-emerald-300 text-emerald-800;
+}
+
+.status-paid {
+  @apply bg-green-100 border-green-300 text-green-800;
+}
+
+.status-draft {
+  @apply bg-gray-100 border-gray-300 text-gray-800;
+}
+
+/* Dark mode status styles */
+.dark .status-pending {
+  @apply bg-yellow-900/20 border-yellow-600 text-yellow-400;
+}
+
+.dark .status-sent {
+  @apply bg-blue-900/20 border-blue-600 text-blue-400;
+}
+
+.dark .status-accepted {
+  @apply bg-green-900/20 border-green-600 text-green-400;
+}
+
+.dark .status-rejected {
+  @apply bg-red-900/20 border-red-600 text-red-400;
+}
+
+.dark .status-in_progress {
+  @apply bg-purple-900/20 border-purple-600 text-purple-400;
+}
+
+.dark .status-completed {
+  @apply bg-emerald-900/20 border-emerald-600 text-emerald-400;
+}
+
+.dark .status-paid {
+  @apply bg-green-900/20 border-green-600 text-green-400;
+}
+
+.dark .status-draft {
+  @apply bg-gray-900/20 border-gray-600 text-gray-400;
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  direction: rtl;
+}
+
+[dir="rtl"] .sidebar {
+  left: auto;
+  right: 0;
+}
+
+[dir="rtl"] .main-content {
+  margin-right: 280px;
+  margin-left: 0;
+}
+
+[dir="rtl"] .main-content.expanded {
+  margin-right: 0;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(240, 3.7%, 15.9%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(240, 5%, 64.9%);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(240, 5%, 84.9%);
+}
+
+/* Status badges */
+.status-pending {
+  @apply bg-yellow-500/20 text-yellow-400 border-yellow-500/20;
+}
+
+.status-sent {
+  @apply bg-blue-500/20 text-blue-400 border-blue-500/20;
+}
+
+.status-accepted {
+  @apply bg-green-500/20 text-green-400 border-green-500/20;
+}
+
+.status-rejected {
+  @apply bg-red-500/20 text-red-400 border-red-500/20;
+}
+
+.status-in_progress {
+  @apply bg-purple-500/20 text-purple-400 border-purple-500/20;
+}
+
+.status-completed {
+  @apply bg-emerald-500/20 text-emerald-400 border-emerald-500/20;
+}
+
+.status-paid {
+  @apply bg-green-600/20 text-green-300 border-green-600/20;
+}
